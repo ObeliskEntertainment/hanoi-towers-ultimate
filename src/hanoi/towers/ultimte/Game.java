@@ -6,6 +6,7 @@
 package hanoi.towers.ultimte;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -22,7 +23,7 @@ public class Game {
     static Ring using=null;
     static Field field;
     
-    public static void start(Stage primaryStage,int colors,int height) {
+    public static void start(final Stage primaryStage,int colors,int height) {
         Pane root = new Pane();
         field=new Field(height,colors);
         
@@ -43,9 +44,11 @@ public class Game {
             b.setText("use");
             b.setMaxWidth(70);
             b.setMinWidth(70);
-            b.setOnAction((ActionEvent event) -> {
-                field=use(no,field);
-                play(primaryStage);
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    field=use(no,field);
+                    play(primaryStage);
+                }
             });
             root.getChildren().add(b);
             
@@ -86,7 +89,7 @@ public class Game {
     
     }
     
-    public static void play(Stage primaryStage){
+    public static void play(final Stage primaryStage){
         Pane root=new Pane();
         for(int i=0;i<field.poles.length;i++){
             Rectangle r = new Rectangle();
@@ -105,9 +108,11 @@ public class Game {
             b.setText("use");
             b.setMaxWidth(70);
             b.setMinWidth(70);
-            b.setOnAction((ActionEvent event) -> {
-                field=use(no,field);
-                play(primaryStage);
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    field=use(no,field);
+                    play(primaryStage);
+                }
             });
             root.getChildren().add(b);
             
