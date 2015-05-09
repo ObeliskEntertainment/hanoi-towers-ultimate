@@ -5,13 +5,14 @@
  */
 package hanoi.towers.ultimte;
 
+import static hanoi.towers.ultimte.Game.field;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,14 +25,16 @@ public class StartScreen extends Application {
     
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
         Pane root = new Pane();
         
         Button exit = new Button();
         exit.setText("exit");
         exit.setLayoutY(150);
-        exit.setOnAction((ActionEvent event) -> {
-            primaryStage.close();
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                primaryStage.close();
+            }
         });
         root.getChildren().add(exit);
         
@@ -40,7 +43,7 @@ public class StartScreen extends Application {
         colorinfo.setLayoutY(10);
         root.getChildren().add(colorinfo);
         
-        TextField color=new TextField();
+        final TextField color=new TextField();
         color.setLayoutY(20);
         root.getChildren().add(color);
         
@@ -49,19 +52,21 @@ public class StartScreen extends Application {
         heightinfo.setLayoutY(60);
         root.getChildren().add(heightinfo);
         
-        TextField height=new TextField();
+        final TextField height=new TextField();
         height.setLayoutY(70);
         root.getChildren().add(height);
         
         Button play = new Button();
         play.setText("play");
         play.setLayoutY(100);
-        play.setOnAction((ActionEvent event) -> {
-            int c=Integer.parseInt(color.getText());
-            int h=Integer.parseInt(height.getText());
-            if(c<0||color.getText().equals("")){c=0;}if(c>5){c=5;}
-            if(h<1||height.getText().equals("")){h=1;}if(h>8){h=8;}
-            Game.start(primaryStage,c,h);
+        play.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                int c=Integer.parseInt(color.getText());
+                int h=Integer.parseInt(height.getText());
+                if(c<0||color.getText().equals("")){c=0;}if(c>5){c=5;}
+                if(h<1||height.getText().equals("")){h=1;}if(h>8){h=8;}
+                Game.start(primaryStage,c,h);
+            }
         });
         root.getChildren().add(play);
         
