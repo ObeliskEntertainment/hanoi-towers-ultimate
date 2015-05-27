@@ -76,7 +76,9 @@ public class Game {
     
     public static Field use(int i,Field f){
         if(using==null){
-            using=f.poles[i].pop();
+            if(f.poles[i].used>0){
+                using=f.poles[i].pop();
+            }
         }else{
             if(f.poles[i].push(using)){
                 if(f.check()){

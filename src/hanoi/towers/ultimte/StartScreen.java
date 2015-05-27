@@ -45,6 +45,7 @@ public class StartScreen extends Application {
         
         final TextField color=new TextField();
         color.setLayoutY(20);
+        color.setText("0");
         root.getChildren().add(color);
         
         Text heightinfo=new Text();
@@ -54,6 +55,7 @@ public class StartScreen extends Application {
         
         final TextField height=new TextField();
         height.setLayoutY(70);
+        height.setText("1");
         root.getChildren().add(height);
         
         Button play = new Button();
@@ -63,8 +65,8 @@ public class StartScreen extends Application {
             public void handle(ActionEvent event) {
                 int c=Integer.parseInt(color.getText());
                 int h=Integer.parseInt(height.getText());
-                if(c<0||color.getText().equals("")){c=0;}if(c>5){c=5;}
-                if(h<1||height.getText().equals("")){h=1;}if(h>8){h=8;}
+                if(c<0){c=0;}if(c>5){c=5;}
+                if(h<1){h=1;}if(h>8){h=8;}
                 Game.start(primaryStage,c,h);
             }
         });

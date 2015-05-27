@@ -17,10 +17,12 @@ public class Pole {
     Ring[] rings;
     Color color;
     int size;
+    int used;
     
     Pole(int s,int c){
         rings=new Ring[s];
         size=s;
+        used=0;
         switch (c){
             case 0:color=Color.BLACK;break;
             case 1:color=Color.CHOCOLATE;break;
@@ -40,6 +42,7 @@ public class Pole {
         if(i>=0){
             Ring res=rings[i];
             rings[i]=null;
+            used--;
             return res;
         }else{
             return null;
@@ -49,6 +52,7 @@ public class Pole {
     boolean push(Ring r){
         if(rings[0]==null){
             rings[0]=r;
+            used++;
             return true;
         }else{
             int i=size-1;
@@ -57,6 +61,7 @@ public class Pole {
             }
             if(r.size<rings[i].size || i<0){
                 rings[i+1]=r;
+                used++;
                 return true;
             }else{
                 return false;
